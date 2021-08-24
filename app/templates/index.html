@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8">
+			<title>Alex Marukos | Official Homepage</title>
+		<meta name="description" content="Get the latest information on <bold>Alex Marukos</bold>">
+		<meta name="robots" content="index,follow">
+
+		<link rel="icon" href="/static/images/favicon.png">
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/css/animate.css">
+		<link rel="stylesheet" href="/static/css/flexslider.css">
+		<link rel="stylesheet" href="/static/fonts/icomoon/style.css">
+		<link rel="stylesheet" href="/static/css/bootstrap.css">
+		<link rel="stylesheet" href="/static/css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+	</head>
+
+   <!-- Loads page to specific location (i.e. contact page if there is an error) -->
+   {% if scrollToAnchor %}
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			document.location.hash = '#{{ scrollToAnchor }}';
+		});
+	</script>
+	{% endif %}
+
+   <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+
+      <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+         <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="index.html">Alias</a> -->
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample09">
+               <ul class="navbar-nav">
+                  <li class="nav-item"><a class="nav-link" href="#section-home">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#section-about">About</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#section-interests">Interests</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#section-gallery">Gallery</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#section-resume">Resume</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#section-books">Reads</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#section-contact">Contact</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+	  <div>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<h4 style="text-align:center;color:green">{{ message }}</h4>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	  </div>
+
+      <section class="site-hero" style="background-image: url(/static/images/france2.jpg);" id="section-home" data-stellar-background-ratio="0.5">
+         <div class="container">
+            <div class="row intro-text align-items-center justify-content-center">
+               <div class="col-md-10 text-center">
+                  <h1 class="site-heading site-animate">Hey there, I'm <strong>Alexander Marukos</strong></h1>
+                  <p class="lead site-subheading mb-4 site-animate">Constantly wondering if this page makes me look like a narcissist. Oh well.</p>
+                  <p><a href="#section-about" class="smoothscroll btn btn-primary px-4 py-3">More On Me</a></p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- section -->
+
+      <section class="site-section" id="section-about">
+         <div class="container">
+            <div class="row mb-5 align-items-center">
+               <div class="col-lg-7 pr-lg-5 mb-5 mb-lg-0">
+                  <img src="/static/images/norristown.jpg" alt="Image placeholder" class="img-fluid">
+               </div>
+               <div class="col-lg-5 pl-lg-5">
+                  <div class="section-heading">
+                     <h2>About <strong>Me</strong></h2>
+                  </div>
+                  <p class="lead">I'm a highly motivated self-starter who will try anything at least once*. Most of my satisfaction in life comes from learning new things, inspiring others, and dreaming of being Chopped champion.</p>
+                  <p class="mb-5  ">*Unless it involves heights. Then I'm out.</p>
+                  <p>
+                     <a href="#section-contact" class="btn btn-primary px-4 py-2 btn-sm smoothscroll">Contact Me</a>
+                     <!-- <button class="btn btn-secondary px-4 py-2 btn-sm" type="submit" onclick="window.open('/static/docs/AlexanderMarukos_Resume.pdf')">Download CV</button> -->
+                     <!-- <a href="docs/AlexMarukos_Resume.pdf download" class="btn btn-secondary px-4 py-2 btn-sm">Download CV</a> -->
+                  </p>
+               </div>
+            </div>
+            <div class="row pt-5">
+               <div class="col-md-3 mb-3">
+                  <div class="section-heading">
+                     <h2>My <strong>Skills</strong></h2>
+                  </div>
+               </div>
+               <div class="col-md-9">
+					{% for skill in skills %}
+					  <div class="skill">
+						 <h3>{{ skill.name }}</h3>
+						 <div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: {{ skill.score }}%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+							   <span>{{ skill.score }}%</span>
+							</div>
+						 </div>
+					  </div>
+				    {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <section class="site-section bg-light border-top pb-0"  id="section-interests">
+         <div class="container">
+            <div class="row mb-4">
+               <div class="col-md-12">
+                  <div class="section-heading text-center">
+                     <h2>My <strong>Interests</strong></h2>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+				{% for interest in interests %}
+				   <div class="col-md-6 col-lg-4 text-center mb-5">
+					  <div class="site-service-item site-animate" data-animate-effect="fadeIn">
+						 <span class="icon">
+						 <span class="icon-{{ interest.icon }}"></span>
+						 </span>
+						 <h3 class="mb-4">{{ interest.name }}</h3>
+						 <!-- <p>{{ interest.description }}</p> -->
+						 <!-- <p><a href="#" class="site-link">Learn More <i class="icon-chevron-right"></i></a></p> -->
+					  </div>
+				   </div>
+			   {% endfor %}
+            </div>
+         </div>
+      </section>
+
+      <section class="site-section border-top" id="section-gallery">
+         <div class="container">
+            <div class="row">
+               <div class="section-heading text-center col-md-12">
+                  <h2>Featured <strong>Gallery</strong></h2>
+               </div>
+            </div>
+            <div class="filters">
+               <ul>
+                  <li class="active" data-filter="*">All</li>
+                  <li data-filter=".cooking">Cooking</li>
+                  <li data-filter=".style">Style</li>
+                  <li data-filter=".photography">Photography</li>
+               </ul>
+            </div>
+            <div class="filters-content">
+               <div class="row grid">
+
+			   {% for photo in gallery %}
+                  <div class="single-portfolio col-sm-4 all {{ photo.category }}">
+                     <div class="relative">
+                        <div class="thumb">
+                           <div class="overlay overlay-bg"></div>
+                           <img class="image img-fluid" src="/static/images/gallery/{{ photo.file }}.jpg" alt="">
+                        </div>
+                        <a href="images/gallery/{{ photo.file }}.jpg" class="img-pop-up">
+                           <div class="middle">
+                              <div class="text align-self-center d-flex"><img src="/static/images/preview.png" alt=""></div>
+                           </div>
+                        </a>
+                     </div>
+                     <div class="p-inner">
+                        <h4>{{ photo.title }}</h4>
+                        <div class="cat">{{ photo.category }}</div>
+                     </div>
+                  </div>
+			   {% endfor %}
+            </div>
+         </div>
+      </section>
+      <!-- .section -->
+
+      <section class="site-section bg-light border-top" id="section-resume">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 mb-5">
+                  <div class="section-heading text-center">
+                     <h2>My <strong>Resume</strong></h2>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <h2 class="mb-5">Education</h2>
+                  {% for educ in education %}
+				  <div class="resume-item mb-4">
+                     <span class="date"><span class="icon-calendar"></span>{{ educ.year }}</span>
+                     <span class="school">{{ educ.school }}</span>
+                     <h3>{{ educ.major }}</h3>
+                     <p>{{ educ.achievements }}</p>
+                  </div>
+				  {% endfor %}
+               </div>
+               <div class="col-md-4">
+                  <h2 class="mb-5">Certifications</h2>
+				  {% for certification in certifications %}
+				  <div class="resume-item mb-4">
+                     <span class="school">{{ certification.institution }}</span>
+                     <h3>{{ certification.cert }}</h3>
+                     <p>{{ certification.cert_id }}</p>
+                  </div>
+				  {% endfor %}
+               </div>
+               <div class="col-md-4">
+                  <h2 class="mb-5">Experience</h2>
+				  {% for experience in experiences %}
+				   <div class="resume-item mb-4">
+                     <span class="date"><span class="icon-calendar"></span>{{ experience.year }}</span>
+                     <span class="school">{{ experience.company }}</span>
+                     <h3>{{ experience.role }}</h3>
+                     <p>{{ experience.description }}</p>
+                  </div>
+				  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- .section -->
+
+      <!--Reads-->
+      <section class="site-section border-top" id="section-books">
+        <div class="container">
+             <div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="section-heading text-center">
+                        <h2><strong>Books</strong> I'm Reading</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center my-3">
+            <div class="row mx-auto my-auto">
+                <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                    <div class="carousel-inner w-100" role="listbox">
+                        <div class="carousel-item active">
+                            <div class="col-md-4">
+                                <div class="blog-entry">
+                                    <a href="{{ books[0].link }}" target="_blank"><img src="/static/images/books/{{ books[0].file }}.jpg" alt="Image placeholder" class="img-fluid"></a>
+        <!--                            <div class="blog-entry-text">-->
+        <!--                                <h3><a href="#"><strong>{{ books[0].title }}</strong> by {{ books[0].author }}</a></h3>-->
+        <!--                                <p class="mb-4">{{ books[0].description }}</p>-->
+        <!--                            </div>-->
+                                </div>
+                            </div>
+                       </div>
+
+                       {% for book in books[1:] %}
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="blog-entry">
+                                    <a href="{{ book.link }}" target="_blank"><img src="/static/images/books/{{ book.file }}.jpg" alt="Image placeholder" class="img-fluid"></a>
+        <!--                            <div class="blog-entry-text">-->
+        <!--                                <h3><a href="#"><strong>{{ book.title }}</strong> by {{ book.author }}</a></h3>-->
+        <!--                                <p class="mb-4">{{ book.description }}</p>-->
+        <!--                            </div>-->
+                                </div>
+                            </div>
+                       </div>
+                      {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+      </section>
+	  <!--Reads end-->
+
+      <section class="site-section bg-light border-top" id="section-contact">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 mb-5">
+                  <div class="section-heading text-center">
+                     <h2>Want To <strong>Get In Touch</strong>?</h2>
+                  </div>
+               </div>
+               <div class="col-md-7 mb-5 mb-md-0">
+					<form action="{{ url_for('index') }}" class="site-form" method=post>
+						{{ form.hidden_tag() }}
+						<h3 class="mb-5">Drop A Message</h3>
+						<div class="form-group">
+							{{ form.name(class_="form-control px-3 py-4", placeholder="Name") }}
+							{% for error in form.name.errors %}
+						    <span style="color: red;">[{{ error }}]</span>
+							{% endfor %}
+						</div>
+						<div class="form-group">
+							{{ form.email(class_="form-control px-3 py-4", placeholder="Email") }}
+							{% for error in form.email.errors %}
+						    <span style="color: red;">[{{ error }}]</span>
+							{% endfor %}
+							<!-- {% for error in form.email.errors %} -->
+							<!-- <span style="color: red;">[{{ error }}]</span> -->
+							<!-- {% endfor %} -->
+						</div>
+						<div class="form-group">
+							{{ form.phone(class_="form-control px-3 py-4", placeholder="Phone") }}
+							<!-- <input type="text" class="form-control px-3 py-4" placeholder="Your Name"> -->
+						</div>
+						<div class="form-group">
+							{{ form.message(class_="form-control px-3 py-4", cols="30", rows="10", placeholder="Message") }}
+							{% for error in form.message.errors %}
+						    <span style="color: red;">[{{ error }}]</span>
+							{% endfor %}
+							<!-- <input type="text" class="form-control px-3 py-4" placeholder="Your Name"> -->
+						</div>
+						<div class="form-group">
+							{{ form.submit(class_="btn btn-primary  px-4 py-3", placeholder="Message") }}
+						</div>
+					</form>
+               </div>
+               <div class="col-md-5 pl-md-5">
+                  <h3 class="mb-5">Contact Details</h3>
+                  <ul class="site-contact-details">
+                     <li>
+                        <span class="text-uppercase">Email</span>
+                        alexmarukos20@gmail.com
+                     </li>
+                     <li>
+                        <span class="text-uppercase">Phone</span>
+                        +1 267 638 6081
+                     </li>
+                     <li>
+                        <span class="text-uppercase">Location</span>
+                        Conshohocken, PA
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <footer class="site-footer">
+         <div class="container">
+            <!-- <div class="row mb-3"> -->
+               <!-- <div class="col-md-12 text-center"> -->
+                  <!-- <p> -->
+                     <!-- <a href="#" class="social-item"><span class="icon-facebook2"></span></a> -->
+                     <!-- <a href="#" class="social-item"><span class="icon-twitter"></span></a> -->
+                     <!-- <a href="#" class="social-item"><span class="icon-instagram2"></span></a> -->
+                     <!-- <a href="#" class="social-item"><span class="icon-linkedin2"></span></a> -->
+                     <!-- <a href="#" class="social-item"><span class="icon-vimeo"></span></a> -->
+                  <!-- </p> -->
+               <!-- </div> -->
+            <!-- </div> -->
+            <div class="row">
+               <p class="col-12 text-center">
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  <!-- Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a> -->
+                  I built this website in part to learn the python-based Flask web-development framework. I also built this website to give others a non-resumed-based way of viewing my interests and experiences.<br><br>
+				  Copyright &copy; Alexander Marukos <script>document.write(new Date().getFullYear());</script> | All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
+				  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+               </p>
+            </div>
+         </div>
+      </footer>
+
+      <script src="/static/js/vendor/jquery.min.js"></script>
+      <script src="/static/js/vendor/popper.min.js"></script>
+      <script src="/static/js/vendor/bootstrap.min.js"></script>
+      <script src="/static/js/vendor/jquery.easing.1.3.js"></script>
+      <script src="/static/js/vendor/jquery.stellar.min.js"></script>
+      <script src="/static/js/vendor/jquery.waypoints.min.js"></script>
+      <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+      <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+      <script src="/static/js/custom.js"></script>
+      <!-- Google Map -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script src="/static/js/google-map.js"></script>
+   </body>
+</html>
